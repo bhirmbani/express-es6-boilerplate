@@ -1,0 +1,19 @@
+{
+  "name": "express-es6-boilerplate",
+  "version": "1.0.0",
+  "description": "boilerplate for express application with es6 javascript coding",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "bm",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^4.16.0",
+    "nodemon": "^1.14.11"
+  },
+  "dependencies": {
+    "express": "^4.16.2",
+    "mongoose": "^5.0.2"
+  }
+}
