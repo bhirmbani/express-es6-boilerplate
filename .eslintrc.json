@@ -1,3 +1,6 @@
 {
-  "extends": ["plugin:jest/recommended", "airbnb-base"]
+  "extends": ["plugin:jest/recommended", "airbnb-base"],
+  "rules": {
+    "no-console": ["error", { "allow": ["warn", "error"] }]
+  }
 }
