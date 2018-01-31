@@ -1,5 +1,6 @@
 export default class BaseService {
   /**
+   * @apiDefine BaseService Class Base Service a class that include common and shared operation
    * @apiParam {Model} model a mongoose model
    */
   constructor(model) {
@@ -7,6 +8,7 @@ export default class BaseService {
   }
 
   /**
+   * @apiName Get all rows
    * @api {get} / get all
    * @apiDescription pass each params in order. if not required MUST pass null
    * @apiParam {Object} condition optional a condition params from Model.find on mongoose
@@ -27,8 +29,9 @@ export default class BaseService {
   }
 
   /**
+   * @apiName Create one row
    * @api {post} / create
-   * @apiParam  {Object} data object that include data
+   * @apiParam {Object} required an object with data needed to create one row
    */
   async create(payload) {
     try {
