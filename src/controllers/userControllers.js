@@ -1,3 +1,6 @@
+import bcryptjs from 'bcryptjs';
+import HTTPStatus from 'http-status';
+import { ResponseBuilder } from '../helpers';
 import { UserService } from '../services';
 
 export default class UserController {
@@ -8,24 +11,31 @@ export default class UserController {
   async get(req, res) {
     try {
       const response = await this.service.findAll({}, null, null, 'createdAt');
-      res.json({ response });
+      res.status(HTTPStatus.OK).json(new ResponseBuilder().setData(response).build());
     } catch (error) {
-      res.json({ error });
+      res.status(HTTPStatus.BAD_REQUEST).json(new ResponseBuilder()
+        .setMsg(error)
+        .setOk(false)
+        .build());
     }
   }
 
   async create(req, res) {
     const { username, password, email } = req.body;
+    const hash = bcryptjs.hashSync(password, 10);
     try {
       const data = {
         username,
-        password,
+        password: hash,
         email,
       };
       const response = await this.service.create(data);
-      res.json({ response });
+      res.status(HTTPStatus.CREATED).json(new ResponseBuilder().setData(response).build());
     } catch (error) {
-      res.json({ error });
+      res.status(HTTPStatus.BAD_REQUEST).json(new ResponseBuilder()
+        .setMsg(error)
+        .setOk(false)
+        .build());
     }
   }
 }
