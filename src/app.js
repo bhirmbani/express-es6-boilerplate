@@ -7,7 +7,7 @@ import Promise from 'bluebird';
 import mongoose from 'mongoose';
 
 // routes
-import user from './routes';
+import user from './routes/user';
 
 require('dotenv-safe').load();
 
