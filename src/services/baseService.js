@@ -44,4 +44,21 @@ export default class BaseService {
       throw Error(error.message);
     }
   }
+
+  /**
+   * @apiName Delete one row
+   * @api {delete} /?username= username
+   * @apiParam  {Object} condition required a condition params from Model.findOneAndRemove on mongoose
+   */
+  async delete(condition) {
+    try {
+      const response = await this.model.findOneAndRemove(condition);
+      if (response) {
+        return response;
+      }
+      throw Error('data not found');
+    } catch (error) {
+      throw error.message;
+    }
+  }
 }

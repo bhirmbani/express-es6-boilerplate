@@ -11,4 +11,8 @@ router.post('/', (req, res) => {
   userController.create(req, res);
 });
 
+router.delete('/', (req, res) => {
+  userController.delete(req, res);
+});
+
 export default router;

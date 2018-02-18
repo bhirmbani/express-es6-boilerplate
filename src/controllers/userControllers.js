@@ -38,4 +38,23 @@ export default class UserController {
         .build());
     }
   }
+
+  async delete(req, res) {
+    const { username } = req.query;
+    try {
+      if (username === undefined) {
+        res.status(HTTPStatus.BAD_REQUEST).json(new ResponseBuilder()
+          .setMsg('you must specify username query')
+          .setOk(false)
+          .build());
+      }
+      const response = await this.service.delete({ username });
+      res.status(HTTPStatus.OK).json(new ResponseBuilder().setData(response).build());
+    } catch (error) {
+      res.status(HTTPStatus.BAD_REQUEST).json(new ResponseBuilder()
+        .setMsg(error)
+        .setOk(false)
+        .build());
+    }
+  }
 }
