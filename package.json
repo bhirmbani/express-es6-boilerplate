@@ -6,7 +6,7 @@
   "scripts": {
     "precommit": "npm test",
     "prepush": "npm test",
-    "test": "jest",
+    "test": "NODE_ENV=test jest --forceExit",
     "babel-node": "babel-node",
     "start": "nodemon --exec npm run babel-node -- ./src/app.js"
   },
@@ -16,9 +16,11 @@
     "apidoc": "^0.17.6",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
+    "babel-preset-flow": "^6.23.0",
     "eslint": "^4.16.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
+    "flow-bin": "^0.66.0",
     "husky": "^0.14.3",
     "jest": "^22.1.4",
     "nodemon": "^1.14.11",
@@ -26,6 +28,7 @@
     "supertest": "^3.0.0"
   },
   "dependencies": {
+    "axios": "^0.17.1",
     "bcryptjs": "^2.4.3",
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
@@ -43,6 +46,10 @@
   },
   "jest": {
     "collectCoverage": true,
-    "coverageReporters": ["json", "html", "text-summary"]
+    "coverageReporters": [
+      "json",
+      "html",
+      "text-summary"
+    ]
   }
 }
