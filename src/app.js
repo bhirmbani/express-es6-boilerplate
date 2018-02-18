@@ -6,6 +6,8 @@ import helmet from 'helmet';
 import Promise from 'bluebird';
 import mongoose from 'mongoose';
 
+import dbConfig from './config/db';
+
 // routes
 import user from './routes/user';
 
@@ -19,8 +21,9 @@ app.use(cors());
 Promise.promisifyAll(mongoose);
 
 // mongoose setup
+const appEnv = app.settings.env;
 const db = mongoose.connection;
-mongoose.connect(`mongodb://localhost/${process.env.DB}`);
+mongoose.connect(dbConfig[appEnv]);
 db.on('open', () => {
   console.warn(`mongodb connected to ${db.db.s.databaseName} database`);
   console.warn();
@@ -40,6 +43,7 @@ app.use('/api/user', user);
 
 app.listen(app.get('port'), () => {
   console.warn(`app listening on ${app.get('port')}`);
+  console.warn(`current environment: ${appEnv}`);
 });
 
 export default app;
