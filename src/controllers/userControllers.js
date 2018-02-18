@@ -1,3 +1,4 @@
+// @flow
 import bcryptjs from 'bcryptjs';
 import HTTPStatus from 'http-status';
 import { ResponseBuilder } from '../helpers';

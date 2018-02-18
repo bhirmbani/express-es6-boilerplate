@@ -46,7 +46,11 @@
   },
   "jest": {
     "collectCoverage": true,
-    "coverageReporters": ["json", "html", "text-summary"]
+    "coverageReporters": [
+      "json",
+      "html",
+      "text-summary"
+    ]
   },
   "babel": {
     "presets": [
@@ -58,7 +62,9 @@
           }
         }
       ],
-      ["flow"]
+      [
+        "flow"
+      ]
     ]
   }
 }
