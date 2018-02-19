@@ -1,3 +1,4 @@
+// @flow
 import BaseService from './baseService';
 import User from '../models';
 
