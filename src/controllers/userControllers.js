@@ -4,12 +4,18 @@ import HTTPStatus from 'http-status';
 import { ResponseBuilder } from '../helpers';
 import { UserService } from '../services';
 
-export default class UserController {
+interface Methods {
+  get(req: Object, res: Object): Promise<any>;
+  create(req: Object, res: Object): Promise<any>;
+}
+
+export default class UserController implements Methods {
+  service: Object;
   constructor() {
     this.service = new UserService();
   }
 
-  async get(req, res) {
+  async get(req: Object, res: Object) {
     try {
       const response = await this.service.findAll({}, null, null, 'createdAt');
       res.status(HTTPStatus.OK).json(new ResponseBuilder().setData(response).build());
@@ -21,7 +27,7 @@ export default class UserController {
     }
   }
 
-  async create(req, res) {
+  async create(req: Object, res: Object) {
     const { username, password, email } = req.body;
     const hash = bcryptjs.hashSync(password, 10);
     try {
@@ -40,7 +46,7 @@ export default class UserController {
     }
   }
 
-  async delete(req, res) {
+  async delete(req: Object, res: Object) {
     const { username } = req.query;
     try {
       if (username === undefined) {

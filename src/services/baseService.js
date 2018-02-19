@@ -1,9 +1,11 @@
+// @flow
 export default class BaseService {
   /**
    * @apiDefine BaseService Class Base Service a class that include common and shared operation
    * @apiParam {Model} model a mongoose model
    */
-  constructor(model) {
+  model: Object;
+  constructor(model: Object) {
     this.model = model;
   }
 
@@ -16,7 +18,12 @@ export default class BaseService {
    * @apiParam {Object} options optional an options params from Model.find on mongoose
    * @apiParam {String} sort required an options params from Model.find on mongoose
    */
-  async findAll(condition = {}, projection = null, options = null, sort) {
+  async findAll(
+    condition: Object = {},
+    projection: ?Object = null,
+    options: ?Object = null,
+    sort: string,
+  ) {
     try {
       const response = await this.model.find(condition, projection, options).sort(sort);
       if (response) {
@@ -33,7 +40,7 @@ export default class BaseService {
    * @api {post} / create
    * @apiParam {Object} required an object with data needed to create one row
    */
-  async create(payload) {
+  async create(payload: Object) {
     try {
       const response = await this.model.create(payload);
       if (response) {
@@ -48,9 +55,10 @@ export default class BaseService {
   /**
    * @apiName Delete one row
    * @api {delete} /?username= username
-   * @apiParam  {Object} condition required a condition params from Model.findOneAndRemove on mongoose
+   * @apiParam  {Object} condition required
+   * a condition params from Model.findOneAndRemove on mongoose
    */
-  async delete(condition) {
+  async delete(condition: Object) {
     try {
       const response = await this.model.findOneAndRemove(condition);
       if (response) {
